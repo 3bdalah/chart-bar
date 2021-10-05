@@ -1,11 +1,28 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import {Bar} from 'react-chartjs-2';
-
+import  axios  from 'axios';
 const BarChart = () => {
+
+//   const dataBar1,dataBar2,dataBar3;
+useEffect(  () => {
+    let baseURL = "https://616c358e-9fbe-45aa-889e-0f4f053d7645.mock.pstmn.io/goals";
+    async function fetchData() {
+       const data = await axios.get(baseURL);
+        console.log(data.data);
+    }
+   fetchData();
+   
+    
+ },[]);
+
+
     return (
         
         <>
            <div className="chart-bar">
+               {/* {Data.data.map(item => {
+                   return <p>{item.id}</p>
+               })} */}
            <Bar 
             // width={1000}
             // className="chart-bar"
@@ -50,7 +67,12 @@ const BarChart = () => {
                         backgroundColor:'#BB6BD9',
                         borderColor:'#BB6BD9',
                         borderWidth:1,
-                        barThickness:30
+                        barThickness:30,
+                        // hitRadius:1,
+                        // pointRadius:12,
+                        // pointStyle:'dash',
+                       radius:1,
+
                         // hoverBackgroundColor:'rgba(0,0,0,0.4)',
                     }
                 ]
@@ -60,9 +82,15 @@ const BarChart = () => {
                 scales: {
                    
                 
-
                 
                     x: {
+                        // alignToPixels:2,
+                        title:{
+                            display: true,
+                            text:'ee',
+                            // padding: 10,
+                            position:'top',
+                        },
                         stacked: true,
                         grid:{
                             display:false
@@ -73,6 +101,16 @@ const BarChart = () => {
                        
                     },
                     y: {
+                        title:{
+                            display: true,
+                            text:'Points',
+                            font: {
+                                weight:'bold'
+                            },
+                            color: '#888',
+                            // osition: ;
+                        },
+                        
                         stacked: true,
                         grid:{
                             display:false
