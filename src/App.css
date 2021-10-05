@@ -1,0 +1,10 @@
+
+.chart-bar{
+  width:660px;
+  background-color: #EDEDED;
+  padding: 20px 30px;
+  border-radius: 14px;
+  position: absolute;
+  top:100px;
+  left:200px;
+}
