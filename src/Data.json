@@ -1,0 +1,135 @@
+{
+    "goals": [
+        {
+            "id": 13,
+            "name": "ad7r el standup",
+            "difficulty_points": 4,
+            "category": "craft",
+            "timestamps":"Sun Oct 03 2021 21:10:38 GMT+0200",
+            "subtasks": [
+                {
+                    "id": 12,
+                    "details": "ay 7ag ... lorem, as if we agreed on the todo_status",
+                    "todo_status": 1,
+                    "deadline": "Sun Oct 11 2021 21:22:05 GMT+0200 (Eastern European Standard Time)",
+                    "timestamps": "Sun Oct 03 2021 21:22:05 GMT+0200"
+                },
+                 {
+                    "id": 14,
+                    "details": "ay 7ag ... lorem, there is a ....",
+                    "todo_status": 1,
+                    "deadline": "Sun Oct 12 2021 21:22:05 GMT+0200 (Eastern European Standard Time)",
+                    "timestamps": "Sun Oct 04 2021 21:22:05 GMT+0200"
+                }
+            ]
+        },
+        {
+            "id": 20,
+            "name": "try not to die",
+            "difficulty_points": 2,
+            "category": "Community",
+            "timestamps":"Sun Oct 05 2021 21:10:38 GMT+0200",
+            "subtasks": [
+                {
+                    "id": 13,
+                    "details": "ay 7ag ... lorem",
+                    "todo_status": 1,
+                    "deadline": "Sun Oct 11 2021 21:22:05 GMT+0200 (Eastern European Standard Time)",
+                    "timestamps": "Sun Oct 03 2021 21:22:05 GMT+0200"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "name": "ad7r el standup",
+            "difficulty_points": 4,
+            "category": "hi",
+            "timestamps":"Sun Oct 03 2021 21:10:38 GMT+0200",
+            "subtasks": [
+                {
+                    "id": 12,
+                    "details": "ay 7ag ... lorem, as if we agreed on the todo_status",
+                    "todo_status": 1,
+                    "deadline": "Sun Oct 11 2021 21:22:05 GMT+0200 (Eastern European Standard Time)",
+                    "timestamps": "Sun Oct 03 2021 21:22:05 GMT+0200"
+                },
+                 {
+                    "id": 14,
+                    "details": "ay 7ag ... lorem, there is a ....",
+                    "todo_status": 1,
+                    "deadline": "Sun Oct 12 2021 21:22:05 GMT+0200 (Eastern European Standard Time)",
+                    "timestamps": "Sun Oct 04 2021 21:22:05 GMT+0200"
+                }
+            ]
+        },
+        {
+            "id": 16,
+            "name": "ad7r el standup",
+            "difficulty_points": 4,
+            "category": "hi",
+            "timestamps":"Sun Oct 03 2021 21:10:38 GMT+0200",
+            "subtasks": [
+                {
+                    "id": 12,
+                    "details": "ay 7ag ... lorem, as if we agreed on the todo_status",
+                    "todo_status": 1,
+                    "deadline": "Sun Oct 11 2021 21:22:05 GMT+0200 (Eastern European Standard Time)",
+                    "timestamps": "Sun Oct 03 2021 21:22:05 GMT+0200"
+                },
+                 {
+                    "id": 14,
+                    "details": "ay 7ag ... lorem, there is a ....",
+                    "todo_status": 1,
+                    "deadline": "Sun Oct 12 2021 21:22:05 GMT+0200 (Eastern European Standard Time)",
+                    "timestamps": "Sun Oct 04 2021 21:22:05 GMT+0200"
+                }
+            ]
+        },
+        {
+            "id": 13,
+            "name": "ad7r el standup",
+            "difficulty_points": 4,
+            "category": "hi",
+            "timestamps":"Sun Oct 03 2021 21:10:38 GMT+0200",
+            "subtasks": [
+                {
+                    "id": 12,
+                    "details": "ay 7ag ... lorem, as if we agreed on the todo_status",
+                    "todo_status": 1,
+                    "deadline": "Sun Oct 11 2021 21:22:05 GMT+0200 (Eastern European Standard Time)",
+                    "timestamps": "Sun Oct 03 2021 21:22:05 GMT+0200"
+                },
+                 {
+                    "id": 14,
+                    "details": "ay 7ag ... lorem, there is a ....",
+                    "todo_status": 1,
+                    "deadline": "Sun Oct 12 2021 21:22:05 GMT+0200 (Eastern European Standard Time)",
+                    "timestamps": "Sun Oct 04 2021 21:22:05 GMT+0200"
+                }
+            ]
+        },
+        {
+            "id": 17,
+            "name": "ad7r el standup",
+            "difficulty_points": 4,
+            "category": "hi",
+            "timestamps":"Sun Oct 03 2021 21:10:38 GMT+0200",
+            "subtasks": [
+                {
+                    "id": 12,
+                    "details": "ay 7ag ... lorem, as if we agreed on the todo_status",
+                    "todo_status": 1,
+                    "deadline": "Sun Oct 11 2021 21:22:05 GMT+0200 (Eastern European Standard Time)",
+                    "timestamps": "Sun Oct 03 2021 21:22:05 GMT+0200"
+                },
+                 {
+                    "id": 14,
+                    "details": "ay 7ag ... lorem, there is a ....",
+                    "todo_status": 1,
+                    "deadline": "Sun Oct 12 2021 21:22:05 GMT+0200 (Eastern European Standard Time)",
+                    "timestamps": "Sun Oct 04 2021 21:22:05 GMT+0200"
+                }
+            ]
+        }
+    ]
+}
