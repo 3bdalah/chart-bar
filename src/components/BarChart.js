@@ -1,16 +1,132 @@
 import React,{useEffect,useState} from 'react'
 import {Bar} from 'react-chartjs-2';
-import  axios  from 'axios';
+// import  axios  from 'axios';
+import dataChart from '../Data.json';
+// import { __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } from 'react';
 const BarChart = () => {
-   const [chartData, setChartData] = useState({});
-    
-     const charLabelData = [
-         [0,3,4,5],
-         [1,1,4,5],
-         [0,3,2,5],
-         [1,1,4,0],   
-     ]
+     const [chartData, setChartData] = useState({});
+     
+    //  Fetch file 
+    const  newDataChart = dataChart.goals.map(({difficulty_points,category,month}) => {
+         return {difficulty_points,category,month}
+        });
+    // print new data chart 
+    console.log('fields -> ',newDataChart);
+     let Q1 =[],Q2=[],Q3 =[],Q4=[];
+    newDataChart.forEach((item ) => {
+         if(item.month === "January" || item.month === "February"||item.month === "March"){
+            Q1.push(item);
+         }else if(item.month === "April" || item.month === "May"||item.month === "June"){
+            Q2.push(item);
+         }else if(item.month === "July" || item.month === "August"||item.month === "September"){
+            Q3.push(item);
+         }else{
+             Q4.push(item);
+         }
+    });
+
+    console.log('quratar',Q1,'quratar 2',Q2,'Quratar 3',Q3,'Quratar 4',Q4);
+    // createa new q1 data label 
+    let newDataQ1=[],
+        newDataQ2=[],
+        newDataQ3=[],
+        newDataQ4=[];
+        
+
+        // print data   
+        // console.log('Q1 -> length',Q1.length);
+    let i=0;
+    while (i<4){
+        let newContainer = [];
+        let people =0,
+        craft=0,
+        community=0,
+        process=0,
+        counter=0;
+        // check type Quartar ? ok
+        let DataQuartar = [];
+        if(i=== 0){
+          DataQuartar = Q1;
+
+        }else if(i===1){
+            DataQuartar = Q2;
+        }else if(i===2){
+            DataQuartar = Q3;
+        }else{
+            DataQuartar = Q4;
+        }
+      DataQuartar.forEach((item)=>{
+        if(item.category === "people"){
+            people = item.difficulty_points;
+            counter++;
+        }else if(item.category=== "craft"){
+          craft = item.difficulty_points;
+          counter++;
+        }else if(item.category=== "community"){
+            community = item.difficulty_points;
+            counter++;
+        }else{
+            process = item.difficulty_points;
+            counter++;
+        }
+        if(counter === Q1.length){
+
+        }
+    });
+
+        newContainer.push(craft);
+        newContainer.push(process);
+        newContainer.push(people);
+        newContainer.push(community);
+        if(i=== 0){
+            newDataQ1 = newContainer;
   
+          }else if(i===1){
+            newDataQ2 = newContainer;
+          }else if(i===2){
+            newDataQ3 =newContainer;
+          }else{
+            newDataQ4 =newContainer;
+          }
+        console.log('new Data Q1', newDataQ1);
+        console.log('new Data Q2', newDataQ2);
+        console.log('new Data Q3', newDataQ3);
+        console.log('new Data Q4', newDataQ4);
+        i++;
+    }    
+    // [Q1,Q2,Q3,Q4].forEach((item)=>{
+    //     if(item.category === "people"){
+    //         people = item.difficulty_points;
+    //         counter++;
+    //     }else if(item.category=== "craft"){
+    //       craft = item.difficulty_points;
+    //       counter++;
+    //     }else if(item.category=== "community"){
+    //         community = item.difficulty_points;
+    //         counter++;
+    //     }else{
+    //         process = item.difficulty_points;
+    //         counter++;
+    //     }
+    //     if(counter === Q1.length){
+
+    //     }
+
+    // });
+    
+  
+
+    const charLabelData = [
+        newDataQ1,
+        newDataQ2,
+        newDataQ3,
+        newDataQ4
+        // [1,1,4,5],
+        // [0,3,2,5],
+        // [1,1,4,0],   
+    ];
+
+
     const chart = () => {
           setChartData({
             labels: ['1st', '2nd', '3rd', '4th'],
@@ -53,12 +169,7 @@ const BarChart = () => {
                     borderColor:'#BB6BD9',
                     borderWidth:1,
                     barThickness:30,
-                    // hitRadius:1,
-                    // pointRadius:12,
-                    // pointStyle:'dash',
                    radius:1,
-
-                    // hoverBackgroundColor:'rgba(0,0,0,0.4)',
                 }
             ]
             
@@ -67,21 +178,21 @@ const BarChart = () => {
     }
     //   const dataBar1,dataBar2,dataBar3;
 
-    function addData(chart, label, data) {
-        chart.data.labels.push(label);
-        chart.data.datasets.forEach((dataset) => {
-            dataset.data.push(data);
-        });
-        chart.update();
-    }
+    // function addData(chart, label, data) {
+    //     chart.data.labels.push(label);
+    //     chart.data.datasets.forEach((dataset) => {
+    //         dataset.data.push(data);
+    //     });
+    //     chart.update();
+    // }
 
-    function removeData(chart) {
-        chart.data.labels.pop();
-        chart.data.datasets.forEach((dataset) => {
-            dataset.data.pop();
-        });
-        chart.update();
-    }
+    // function removeData(chart) {
+    //     chart.data.labels.pop();
+    //     chart.data.datasets.forEach((dataset) => {
+    //         dataset.data.pop();
+    //     });
+    //     chart.update();
+    // }
 
 useEffect(  () => {
     
@@ -89,7 +200,7 @@ useEffect(  () => {
    
     // http://164.90.188.52:8000/goals
    
-    // let baseURL = "http://164.90.188.52:8000"; 
+    // let baseURL = "https://mockzz.herokuapp.com/goals"; 
     // const fetchData = async() => {
     //        const data = await axios.get(baseURL);
     //         console.log('inside fetch',data);
@@ -99,7 +210,7 @@ useEffect(  () => {
     // fetchData();
    chart();
     
- },[]);
+ },[ ]);
 
  return (
      
@@ -107,14 +218,10 @@ useEffect(  () => {
            <div className="chart-bar">
               
            <Bar 
-            // width={1000}
-            // className="chart-bar"
-            
             data={chartData}
             options={ {
                 scales: {
                     x: {
-                        // alignToPixels:2,
                         title:{
                             display: true,
                             text:'Quartar',
@@ -127,7 +234,6 @@ useEffect(  () => {
                         grid:{
                             display:false
                                 },
-                    //    barPercentage: 0.1,
                        categorySpacing:0,
                        
                        
@@ -147,19 +253,17 @@ useEffect(  () => {
                         grid:{
                             display:false
                         },
-                        // labelMaxWidth: 20,
                         beginAtZero: true,   // minimum value will be 0.
-                        // <=> //
                         min: 0,
                         max: 25,
                         stepSize: 5, // 1 - 2 - 3 ...
-                        // width:10,
                         
                   
                     }
                 }
             }}
             />
+            
            </div>
         </>
     )

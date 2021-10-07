@@ -5,7 +5,8 @@
             "name": "ad7r el standup",
             "difficulty_points": 4,
             "category": "craft",
-            "timestamps":"Sun Oct 03 2021 21:10:38 GMT+0200",
+            "timestamps":"Sun Oct  03 2021 21:10:38 GMT+0200",
+            "month" : "October",
             "subtasks": [
                 {
                     "id": 12,
@@ -29,6 +30,7 @@
             "difficulty_points": 2,
             "category": "Community",
             "timestamps":"Sun Oct 05 2021 21:10:38 GMT+0200",
+            "month" : "March",
             "subtasks": [
                 {
                     "id": 13,
@@ -43,8 +45,9 @@
             "id": 3,
             "name": "ad7r el standup",
             "difficulty_points": 4,
-            "category": "hi",
+            "category": "people",
             "timestamps":"Sun Oct 03 2021 21:10:38 GMT+0200",
+            "month":"June",
             "subtasks": [
                 {
                     "id": 12,
@@ -66,8 +69,9 @@
             "id": 16,
             "name": "ad7r el standup",
             "difficulty_points": 4,
-            "category": "hi",
+            "category": "community",
             "timestamps":"Sun Oct 03 2021 21:10:38 GMT+0200",
+            "month" : "May",
             "subtasks": [
                 {
                     "id": 12,
@@ -86,11 +90,12 @@
             ]
         },
         {
-            "id": 13,
+            "id": 18,
             "name": "ad7r el standup",
             "difficulty_points": 4,
-            "category": "hi",
+            "category": "craft",
             "timestamps":"Sun Oct 03 2021 21:10:38 GMT+0200",
+            "month" : "June",
             "subtasks": [
                 {
                     "id": 12,
@@ -112,8 +117,9 @@
             "id": 17,
             "name": "ad7r el standup",
             "difficulty_points": 4,
-            "category": "hi",
+            "category": "people",
             "timestamps":"Sun Oct 03 2021 21:10:38 GMT+0200",
+            "month":"March",
             "subtasks": [
                 {
                     "id": 12,
