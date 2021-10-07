@@ -5,7 +5,7 @@ import dataChart from '../Data.json';
 // import { __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } from 'react';
 const BarChart = () => {
      const [chartData, setChartData] = useState({});
-     
+
     //  Fetch file 
     const  newDataChart = dataChart.goals.map(({difficulty_points,category,month}) => {
          return {difficulty_points,category,month}
@@ -57,16 +57,16 @@ const BarChart = () => {
         }
       DataQuartar.forEach((item)=>{
         if(item.category === "people"){
-            people = item.difficulty_points;
+            people += item.difficulty_points;
             counter++;
         }else if(item.category=== "craft"){
-          craft = item.difficulty_points;
+          craft += item.difficulty_points;
           counter++;
         }else if(item.category=== "community"){
-            community = item.difficulty_points;
+            community += item.difficulty_points;
             counter++;
         }else{
-            process = item.difficulty_points;
+            process += item.difficulty_points;
             counter++;
         }
         if(counter === Q1.length){
