@@ -20,7 +20,7 @@ const BarChart = () => {
             Q2.push(item);
          }else if(item.month === "July" || item.month === "August"||item.month === "September"){
             Q3.push(item);
-         }else{
+         }else if(item.month === "October" || item.month === "November"||item.month === "December"){
              Q4.push(item);
          }
     });
@@ -85,15 +85,15 @@ const BarChart = () => {
             newDataQ2 = newContainer;
           }else if(i===2){
             newDataQ3 =newContainer;
-          }else{
+          }else if(i===3){
             newDataQ4 =newContainer;
           }
+          i++;
+        }    
         console.log('new Data Q1', newDataQ1);
         console.log('new Data Q2', newDataQ2);
         console.log('new Data Q3', newDataQ3);
         console.log('new Data Q4', newDataQ4);
-        i++;
-    }    
     // [Q1,Q2,Q3,Q4].forEach((item)=>{
     //     if(item.category === "people"){
     //         people = item.difficulty_points;
@@ -114,16 +114,55 @@ const BarChart = () => {
 
     // });
     
-  
+    let k=0,labelData1=[],labelData2=[],labelData3=[],labelData4=[],boardData=[];
+   while(k<4){
+         let coverArray = [];
+       if(k=== 0){
+            coverArray = newDataQ1
+       }else if(k=== 1){
+        coverArray = newDataQ2
+       }else if(k=== 2){
+        coverArray = newDataQ3
+       }else if(k=== 3){
+        coverArray = newDataQ4;
+       }
+       let cnt=0;
+    coverArray.forEach((item) => {
+            cnt++;
+            // console.log('item' , item);
+            if(cnt === 1){
+            labelData1.push(item);
+            }else if(cnt===2){
+            labelData2.push(item);
+            }else if(cnt===3){
+            labelData3.push(item);
+            }else if(cnt===4){
+            labelData4.push(item);
+            cnt=0;
+            // labelData =[];
+        }
+    });
+   k++;
+   }
+boardData.push(labelData1);
+
+boardData.push(labelData2);
+
+boardData.push(labelData3);
+
+boardData.push(labelData4);
+    //    Print board data 
+   console.log('board data -> ',boardData);
 
     const charLabelData = [
-        newDataQ1,
-        newDataQ2,
-        newDataQ3,
-        newDataQ4
-        // [1,1,4,5],
-        // [0,3,2,5],
-        // [1,1,4,0],   
+        // newDataQ1,
+        // newDataQ2,
+        // newDataQ3,
+        // newDataQ4
+        [1,7,4,0],
+        [1,1,4,5],
+        [7,3,2,5],
+        [1,1,4,0],   
     ];
 
 
@@ -133,7 +172,7 @@ const BarChart = () => {
             datasets: [
                 {
                     label: 'Craft',
-                    data:charLabelData[0],
+                    data:boardData[0],
                     backgroundColor: '#F2994A',
                     borderColor: '#F2994A',
                     borderWidth: 1,
@@ -141,7 +180,7 @@ const BarChart = () => {
                 },
                 {
                     label: 'Process',
-                    data:charLabelData[1],
+                    data:boardData[1],
                     // backgroundColor: 'rgba(54, 162, 235, 0.2)',
                     backgroundColor:'#F2C94C',
                     borderColor:'#F2C94C',
@@ -152,7 +191,7 @@ const BarChart = () => {
                 ,
                 {
                     label: 'People',
-                    data:charLabelData[2],
+                    data:boardData[2],
                     // backgroundColor: 'rgba(54, 162, 235, 0.2)',
                     backgroundColor:'#9B51E0',
                     borderColor:'#9B51E0',
@@ -163,7 +202,7 @@ const BarChart = () => {
                 ,
                 {
                     label: 'Cummunity',
-                    data:charLabelData[3],
+                    data:boardData[3],
                     // backgroundColor: 'rgba(54, 162, 235, 0.2)',
                     backgroundColor:'#BB6BD9',
                     borderColor:'#BB6BD9',
