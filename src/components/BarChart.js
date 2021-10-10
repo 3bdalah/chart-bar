@@ -1,249 +1,320 @@
-import React, {
-    useEffect,
-    useState
-} from 'react'
-import {
-    Bar
-} from 'react-chartjs-2';
+import React, { useEffect,useState} from 'react'
+import { Bar } from 'react-chartjs-2';
 // import  axios  from 'axios';
 import dataChart from '../Data.json';
-// import { __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } from 'react';
+
 const BarChart = () => {
-    const [chartData, setChartData] = useState({});
-
+    // const colorStore = ['#693D3D','#BA5536','#A43820','#e6194b', '#3cb44b', '#ffe119', '#4363d8', '#f58231', '#911eb4', '#46f0f0', '#f032e6', '#bcf60c', '#fabebe', '#008080', '#e6beff', '#9a6324', '#fffac8', '#800000', '#aaffc3', '#808000', '#ffd8b1', '#000075', '#808080', '#ffffff', '#000000'];
+    let [chartData,  setChartData] = useState({});
+    let [labelsBar,setLabelBar] = useState([{
+        label: 'Craft',
+        data:[1,2,3,4],
+        backgroundColor: '#F2994A',
+        borderColor: '#fff',
+        borderWidth: 0,
+        barThickness: 30
+    }
+]);
     //  Fetch file to return data bar stacked 
-    const newDataChart = dataChart.goals.map(({
-        difficulty_points,
-        category,
-        month
-    }) => {
-        return {
-            difficulty_points,
-            category,
-            month
-        }
-    });
+    let Q1 = new Map(),
+        Q2 = new Map(),
+        Q3 = new Map(),
+        Q4 = new Map(),
+        catgry = new Map();
+     dataChart.goals.forEach(({ difficulty_points, category ,month }) => {
+        //  to checked category
+        catgry.set(category,"");
 
-    // print new data chart 
-    console.log('fields -> ', newDataChart);
-
-    let Q1 = [],
-        Q2 = [],
-        Q3 = [],
-        Q4 = [];
-    newDataChart.forEach((item) => {
-        if (item.month === "January" || item.month === "February" || item.month === "March") {
-            Q1.push(item);
-        } else if (item.month === "April" || item.month === "May" || item.month === "June") {
-            Q2.push(item);
-        } else if (item.month === "July" || item.month === "August" || item.month === "September") {
-            Q3.push(item);
-        } else if (item.month === "October" || item.month === "November" || item.month === "December") {
-            Q4.push(item);
-        }
-    });
-
-    // print data quaratars  
-    console.log('quratar', Q1, 'quratar 2', Q2, 'Quratar 3', Q3, 'Quratar 4', Q4);
-
-    // createa new q1 data label 
-    let newDataQ1 = [],
-        newDataQ2 = [],
-        newDataQ3 = [],
-        newDataQ4 = [];
-
-
-    // print data   
-    // console.log('Q1 -> length',Q1.length);
-    // while (i < 4) {
-        //         // counter = 0;
-        //     // check type Quartar ? ok
-        //     if (i === 0) {
-            //         DataQuartar = Q1;
-            //     } else if (i === 1) {
-                //         DataQuartar = Q2;
-                //     } else if (i === 2) {
-                    //         DataQuartar = Q3;
-                    //     } else {
-                        //         DataQuartar = Q4;
-                        //     }
-    let newDataQ = [];
-    [Q1,Q2,Q3,Q4].forEach((DataQuartar) => {
-        let newContainer = [];
-        let people = 0,
-            craft = 0,
-            community = 0,
-            process = 0;
-        // let DataQuartar = [];
-
-
-        DataQuartar.forEach((item) => {
-            if (item.category === "people") {
-                people += item.difficulty_points;
-                // counter++;
-            } else if (item.category === "craft") {
-                craft += item.difficulty_points;
-                // counter++;
-            } else if (item.category === "community") {
-                community += item.difficulty_points;
-                // counter++;
-            } else {
-                process += item.difficulty_points;
-                // counter++;
+        if (month === "January" || month === "February" || month === "March") {
+            if(Q1.has(category)){
+                Q1.set(category, {points : ( Q1.get(category).points + difficulty_points),title : category, color : '#693D3D'});
+            }else {
+                Q1.set(category, {points : difficulty_points,title : category, color:'#693D3D'});
             }
-            
-        });
-        newContainer.push(craft);
-        newContainer.push(process);
-        newContainer.push(people);
-        newContainer.push(community);
-        newDataQ.push(newContainer);
-        // print data new q 
-        // if (i === 0) {
-            //     newDataQ1 = newContainer;
-            
-
-        // } else if (i === 1) {
-        //     newDataQ2 = newContainer;
-        // } else if (i === 2) {
-        //     newDataQ3 = newContainer;
-        // } else if (i === 3) {
-        //     newDataQ4 = newContainer;
+            // Q1.set({difficulty_points,category,month});
+        } else if (month === "April" || month === "May" || month === "June") {
+            if(Q2.has(category)){
+                Q2.set(category, {points : ( Q2.get(category).points + difficulty_points),title : category, color : '#693D3D'});
+            }else {
+                Q2.set(category, {points : difficulty_points,title : category, color:'#896D6D'});
+            }
+        } else if (month === "July" || month === "August" || month === "September") {
+            if(Q3.has(category)){
+                Q3.set(category, {points : ( Q3.get(category).points + difficulty_points),title : category, color : '#693D3D'});
+            }else {
+                Q3.set(category, {points : difficulty_points,title : category, color:'#595D5D'});
+            }
+        } else if (month === "October" || month === "November" || month === "December") {
+            if(Q4.has(category)){
+                Q4.set(category, {points : ( Q4.get(category).points + difficulty_points),title : category, color : '#693D3D'});
+            }else {
+                Q4.set(category, {points : difficulty_points,title : category, color:'#693D3D'});
+            }
+        }
+        // return {
+        //     difficulty_points,
+        //     category,
+        //     month
         // }
-    })
-     console.log('newData Q >',newDataQ);
-    // console.log('new Data Q1', newDataQ1);
-    // console.log('new Data Q2', newDataQ2);
-    // console.log('new Data Q3', newDataQ3);
-    // console.log('new Data Q4', newDataQ4);
-    // [Q1,Q2,Q3,Q4].forEach((item)=>{
-    //     if(item.category === "people"){
-    //         people = item.difficulty_points;
-    //         counter++;
-    //     }else if(item.category=== "craft"){
-    //       craft = item.difficulty_points;
-    //       counter++;
-    //     }else if(item.category=== "community"){
-    //         community = item.difficulty_points;
-    //         counter++;
-    //     }else{
-    //         process = item.difficulty_points;
-    //         counter++;
-    //     }
-    //     if(counter === Q1.length){
+    });
+    // print catrego
+    // console.log('cetogry -> ',catgry);
 
-    //     }
+   catgry.forEach((index,value) => {
+       let textCategory = value;
+       [Q1,Q2,Q3,Q4].forEach((indexQuarter , valueQuarter) => {
+           if(!indexQuarter.has(textCategory)){
+              indexQuarter.set(textCategory, {points : 0})
+           }
+            //  console.log('indee', indexQuarter);
+       });
+   });
 
+    console.log('\n quratar', Q1,
+                '\n', 'quratar 2',
+                '\n',Q2, 'Quratar 3',
+                '\n', Q3, 'Quratar 4',
+                '\n', Q4);
+    // print first quarter 
+    // console.log('Q!!!',Q1);
+    // let m = 'people';
+    // console.log('Q! -> ', Q1.get(m).points);
+    // print new data chart 
+    // console.log('All goals -> ', newDataChart);
+
+    // Create Arrays Quarter
+
+    // newDataChart.forEach((item) => {
+    //     if (item.month === "January" || item.month === "February" || item.month === "March") {
+    //         Q1.push(item);
+    //     } else if (item.month === "April" || item.month === "May" || item.month === "June") {
+    //         Q2.push(item);
+    //     } else if (item.month === "July" || item.month === "August" || item.month === "September") {
+    //         Q3.push(item);
+    //     } else if (item.month === "October" || item.month === "November" || item.month === "December") {
+    //         Q4.push(item);
+    //     }
     // });
 
-    let k = 0,
-        labelData1 = [],
-        labelData2 = [],
-        labelData3 = [],
-        labelData4 = [],
-        boardData = [];
-    while (k < 4) {
-        let coverArray = [];
-        if (k === 0) {
-            coverArray = newDataQ1
-        } else if (k === 1) {
-            coverArray = newDataQ2
-        } else if (k === 2) {
-            coverArray = newDataQ3
-        } else if (k === 3) {
-            coverArray = newDataQ4;
-        }
-        let cnt = 0;
-        coverArray.forEach((item) => {
-            cnt++;
-            // console.log('item' , item);
-            if (cnt === 1) {
-                labelData1.push(item);
-            } else if (cnt === 2) {
-                labelData2.push(item);
-            } else if (cnt === 3) {
-                labelData3.push(item);
-            } else if (cnt === 4) {
-                labelData4.push(item);
-                cnt = 0;
-                // labelData =[];
-            }
-        });
-        k++;
-    }
-    boardData.push(labelData1);
-    boardData.push(labelData2);
-    boardData.push(labelData3);
-    boardData.push(labelData4);
-    //    Print board data 
-    console.log('board data -> ', boardData);
+    // print data quaratars  
 
-    // const charLabelData = [
-    //     // newDataQ1,
-    //     // newDataQ2,
-    //     // newDataQ3,
-    //     // newDataQ4
-    //     [1,7,4,0],
-    //     [1,1,4,5],
-    //     [7,3,2,5],
-    //     [1,1,4,0],   
-    // ];
+    // //  console.log("q1 -> ", Q1);
+    // let categoryQ1 = new Map(),
+    //     categoryQ2 = new Map(),
+    //     categoryQ3 = new Map(),
+    //     categoryQ4 = new Map();
+
+//    [Q1,Q2,Q3,Q4].forEach((dataInsideQuartar) => {
+//        let crrDiffPoints = "";
+//        let sumPoints =0;
+//        crrDiffPoints = dataInsideQuartar.category;
+//         //  console.log(dataInsideQuartar);
+//        console.log("item Data" , dataInsideQuartar);
+//        dataInsideQuartar.forEach(({difficulty_points,category}) => {
+//            if(crrDiffPoints === category){
+//             sumPoints +=difficulty_points;
+//            }
+//            categoryQ1.set(crrDiffPoints, sumPoints);
+//        });
+//    })
+   
+//    console.log('category 1',categoryQ1);
+//     let indexQ=0;
+//     const arrQuarter = [Q1,Q2,Q3,Q4], arrMapQuarter = [categoryQ1,categoryQ2,categoryQ3,categoryQ4];
+//    [Q1,Q2,Q3,Q4].forEach((dataInsideQuartar) => {
+//                let crrDiffPoints = "";
+//                let sumPoints =0,
+//                    valueQ1 = arrQuarter[indexQ],
+//                    containerQuarter = arrMapQuarter[indexQ];
+                    
+                //  console.log(dataInsideQuartar);
+            //    console.log("item Data" , dataInsideQuartar);
+            //    valueQ1.forEach(({difficulty_points,category}) => {
+            //        if(crrDiffPoints === category){
+            //         sumPoints +=difficulty_points;
+            //        }
+            //        containerQuarter.set(crrDiffPoints, sumPoints);
+            //    });
+            //    indexQ++;    
+        //    console.log('index',indexQ);
+        //    console.log('value Q1',valueQ1);
+    // });   
+
+   
+    // console.log('category 1',categoryQ1);
 
 
+//  Statice Quarters 
+//    Q1.forEach((dataInsideQuartar) => {
+//        let crrDiffPoints = "";
+//        let sumPoints =0;
+//        crrDiffPoints = dataInsideQuartar.category;
+//         //  console.log(dataInsideQuartar);
+//     //    console.log("item Data" , dataInsideQuartar);
+//        Q1.forEach(({difficulty_points,category}) => {
+//            if(crrDiffPoints === category){
+//             sumPoints +=difficulty_points;
+//            }
+//            categoryQ1.set(crrDiffPoints, sumPoints);
+//        });
+//    });
+//    Q2.forEach((dataInsideQuartar) => {
+//     let crrDiffPoints = "";
+//     let sumPoints =0;
+//     crrDiffPoints = dataInsideQuartar.category;
+//      //  console.log(dataInsideQuartar);
+//     // console.log("item Data" , dataInsideQuartar);
+//     Q2.forEach(({difficulty_points,category}) => {
+//         if(crrDiffPoints === category){
+//          sumPoints +=difficulty_points;
+//         }
+//         categoryQ2.set(crrDiffPoints, sumPoints);
+//     });
+// });
+// Q3.forEach((dataInsideQuartar) => {
+//     let crrDiffPoints = "";
+//     let sumPoints =0;
+//     crrDiffPoints = dataInsideQuartar.category;
+//      //  console.log(dataInsideQuartar);
+//     // console.log("item Data" , dataInsideQuartar);
+//     Q3.forEach(({difficulty_points,category}) => {
+//         if(crrDiffPoints === category){
+//          sumPoints +=difficulty_points;
+//         }
+//         categoryQ3.set(crrDiffPoints, sumPoints);
+//     });
+// });
+// Q4.forEach((dataInsideQuartar) => {
+//     let crrDiffPoints = "";
+//     let sumPoints =0;
+//     crrDiffPoints = dataInsideQuartar.category;
+//      //  console.log(dataInsideQuartar);
+//     // console.log("item Data" , dataInsideQuartar);
+//     Q4.forEach(({difficulty_points,category}) => {
+//         if(crrDiffPoints === category){
+//          sumPoints +=difficulty_points;
+//         }
+//         categoryQ4.set(crrDiffPoints, sumPoints);
+//     });
+// });
+//    console.log('categr q1',categoryQ1);
+//    console.log('categr q2',categoryQ2);
+//    console.log('categr q3',categoryQ3);
+//    console.log('categr q4',categoryQ4);
+
+
+
+
+//     let arrQs = [Q1,Q2,Q3,Q4],categoryArr = [categoryQ1,categoryQ2,categoryQ3,categoryQ4];
+//     let indexQr = 0;
+
+//     arrQs[indexQr].forEach((dataInsideQuartar) => {
+//     let crrDiffPoints = "";
+//     let sumPoints =0;
+//     crrDiffPoints = dataInsideQuartar.category;
+//     //  console.log(dataInsideQuartar);
+//     // console.log("item Data" , dataInsideQuartar);
+//     arrQs[indexQr].forEach(({difficulty_points,category}) => {
+//         if(crrDiffPoints === category){
+//             sumPoints +=difficulty_points;
+//         }
+//         categoryArr[indexQr].set(crrDiffPoints, sumPoints);
+//     });
+//     indexQr++;
+// });
+//    console.log('categr q1',categoryQ1);
+//    console.log('categr q2',categoryQ2);
+//    console.log('categr q3',categoryQ3);
+//    console.log('categr q4',categoryQ4);
+
+
+
+    // createa new q1 data label 
+    // let updateDataQ1 = [],
+    //     updateDataQ2 = [],
+    //     updataDataQ3 = [],
+    //     updateDataQ4 = [];
+
+    // Store Data Category && Set Color To Category
+    // let mapCategory = new Map()
+    //  newDataChart.forEach((item) => {  
+    //     //  console.log('itemss',item.category);
+    //      mapCategory.set(item.category,0);
+    //  });
+
+    //  //  Print Caetegory Before
+    //  console.log('mapCategoryColorBefore -> ',mapCategory);
+
+    //  let indexColor=0;
+    //  mapCategoryColorBefore.forEach((key,value) => {
+    //     mapCategoryColorAfter.set(value,colorStore[indexColor]);
+    //     indexColor++;
+    //  })
+    //  print category After
+    //  console.log('mapCategoryColorAfter -> ',mapCategoryColorAfter);
+
+    // mapCategoryColorBefore.forEach((itemKey,itemValue) => {
+    //     // console.log('ii',itemValue);
+    //     let findValueCategory = itemValue;
+        
+    //     [categoryQ1,categoryQ2,categoryQ3,categoryQ4].forEach((item, value)=> {
+    //         console.log('index ', item);
+    //         item.forEach(( valueCategory, keyCategory) => {
+    //             console.log(valueCategory , keyCategory);
+    //         });
+    //     })
+    // })
+
+
+
+
+
+   const pushNewLabel = () => {
+       labelsBar.push({
+        label: 'moople',
+        data: [9,1,11,2],
+        backgroundColor: '#9B51E0',
+        borderColor: '#6B51E0',
+        borderWidth: 0,
+        barThickness: 30
+    })
+   }
     const chart = () => {
         setChartData({
             labels: ['1st', '2nd', '3rd', '4th'],
-            datasets: [{
-                    label: 'Craft',
-                    data: boardData[0],
-                    backgroundColor: '#F2994A',
-                    borderColor: '#F2994A',
-                    borderWidth: 1,
-                    barThickness: 30
-                },
-                {
-                    label: 'Process',
-                    data: boardData[1],
-                    // backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    backgroundColor: '#F2C94C',
-                    borderColor: '#F2C94C',
-                    borderWidth: 1,
-                    // hoverBackgroundColor:'rgba(0,0,0,0.4)',
-                    barThickness: 30
-                },
-                {
-                    label: 'People',
-                    data: boardData[2],
-                    // backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    backgroundColor: '#9B51E0',
-                    borderColor: '#9B51E0',
-                    borderWidth: 1,
-                    // hoverBackgroundColor:'rgba(0,0,0,0.4)',
-                    barThickness: 30
-                },
-                {
-                    label: 'Cummunity',
-                    data: boardData[3],
-                    // backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    backgroundColor: '#BB6BD9',
-                    borderColor: '#BB6BD9',
-                    borderWidth: 1,
-                    barThickness: 30,
-                    radius: 1,
-                }
-            ]
-
-
-        })
+            datasets:labelsBar,
+        });
+        // chartData.datasets.push({
+        //     label : 'Test To Push',
+        //     data : [1,4,6,2],
+        //     backgroundColor:colorStore[2],
+        //     borderColor:colorStore[2],
+        //     borderWidth: 1,
+        //     barThickness: 30,
+        //     radius: 1,
+        //     });
     }
     //   const dataBar1,dataBar2,dataBar3;
 
-    // function addData(chart, label, data) {
-    //     chart.data.labels.push(label);
-    //     chart.data.datasets.forEach((dataset) => {
+    // Test To Push Label Static manual ashtaa!!  
+    
+    // console.log('Char Data test To Access' , chartData.datasets);
+
+
+
+   
+    // console.log('data sets -> ',chartData.datasets[0].label);
+
+
+
+
+
+    // function addData(chartData, label, data) {
+    //     chartData.data.labels.push(label);
+    //     chartData.data.datasets.forEach((dataset) => {
     //         dataset.data.push(data);
     //     });
-    //     chart.update();
+    //     chartData.update();
     // }
 
     // function removeData(chart) {
@@ -268,8 +339,8 @@ const BarChart = () => {
 
         // }
         // fetchData();
+        pushNewLabel();
         chart();
-
     }, []);
 
     return (
@@ -328,7 +399,7 @@ const BarChart = () => {
 
         </div>
         </>
-    )
-}
+    );
+};
 
-export default BarChart
+export default BarChart;
