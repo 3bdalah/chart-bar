@@ -4,5 +4,9 @@
   padding: 20px 30px;
   border-radius: 14px;
   margin:130px  auto;
-  
+}
+@media (min-width:800px){
+  .chart-bar{
+    width:650px;
+  }
 }

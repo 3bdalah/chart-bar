@@ -5,7 +5,7 @@ import React, {
 import {
     Bar
 } from 'react-chartjs-2';
-// import  axios  from 'axios';
+import  axios  from 'axios';
 
 import dataChart from '../Data.json';
 import randomColor from 'random-color';
@@ -28,13 +28,14 @@ const BarChart = () => {
     dataChart.goals.forEach(({
         difficulty_points,
         category,
-        timestamps
+        timestamps,
+        created_at
     }) => {
 
         maxPoints += difficulty_points;
         // get month number
         let monthTimestamps = new Date(),
-            month = monthTimestamps.getMonth(timestamps);
+            month = monthTimestamps.getMonth(created_at);
         console.log('month', month);
         //  to checked category 
         catgry.set(category, []);
@@ -143,16 +144,17 @@ const BarChart = () => {
 
         // let baseURL = "https://616c358e-9fbe-45aa-889e-0f4f053d7645.mock.pstmn.io/goals";
 
-        // http://164.90.188.52:8000/goals
-
         // let baseURL = "https://mockzz.herokuapp.com/goals"; 
-        // const fetchData = async() => {
-        //        const data = await axios.get(baseURL);
-        //         console.log('inside fetch',data);
-        //         // setGoals('spreed data',data.data);
+        let baseURL = "https://stoplight.io/mocks/3-sixty/3-sixty-app/23035474/goals";
 
-        // }
-        // fetchData();
+        const fetchData = async() => {
+               const data = await axios.get(baseURL);
+                console.log('inside fetch',data);
+                // setGoals('spreed data',data.data);
+
+                // console.log('dataa' , data);
+        }
+        fetchData();
         pushNewLabel();
         chart();
     }, []);
