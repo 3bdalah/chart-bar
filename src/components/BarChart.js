@@ -11,6 +11,22 @@ import dataChart from '../Data.json';
 import randomColor from 'random-color';
 
 const BarChart = () => {
+    dataChart.goals.forEach(({created_at}) => {
+        // const date = new Date(2009, 10, 10);  // 2009-11-10
+        // console.log(month);
+        // console.log('Created At' , created_at);
+       
+    });
+
+    // month = monthTimestamps.getMonth(created_at);
+// console.log('month', monthTimestamps);
+
+
+
+
+
+
+
     // Created Random color ;
     randomColor([0.6, 0.95]);
     // Created state chart Data;
@@ -34,9 +50,10 @@ const BarChart = () => {
 
         maxPoints += difficulty_points;
         // get month number
-        let monthTimestamps = new Date(),
-            month = monthTimestamps.getMonth(created_at);
-        console.log('month', month);
+        let monthTimestamps = new Date(created_at);
+        // console.log(created_at);
+        const month = monthTimestamps.getMonth();
+        // console.log(month);
         //  to checked category 
         catgry.set(category, []);
 
@@ -122,13 +139,15 @@ const BarChart = () => {
             backgroundColor: color.hexString(),
             borderWidth: 0,
             borderColor: 'transparent',
-            barThickness: 35
+            barThickness: 25
         });
 
     });
     let maxPointPersent = (maxPoint % 5);
-    maxPoint += (maxPointPersent + 1)
-    console.log('fuckken max points', maxPoint);
+    console.log('max point',maxPointPersent);
+    maxPoint += (5%maxPointPersent);
+    console.log(maxPoint);
+    // console.log('fuckken max points', maxPoint);
     const pushNewLabel = () => {
         labelsBar.push(...FuckData);
     }
@@ -149,7 +168,7 @@ const BarChart = () => {
 
         const fetchData = async() => {
                const data = await axios.get(baseURL);
-                console.log('inside fetch',data);
+                // console.log('inside fetch',data);
                 // setGoals('spreed data',data.data);
 
                 // console.log('dataa' , data);
@@ -159,10 +178,7 @@ const BarChart = () => {
         chart();
     }, []);
 
-    //  to get max defficult points value graph 
-    maxPoints = ((maxPoints - (maxPoints % 10)) + 10);
-    maxPoints = maxPoints.toFixed(0);
-    console.log('max', maxPoints);
+     
     return (
 
         <>
@@ -208,7 +224,7 @@ const BarChart = () => {
                         beginAtZero: true, // minimum value will be 0.
                         min: 0,
                         max: maxPoint + 5,
-                        stepSize: 25, // 1 - 2 - 3 ...
+                        stepSize: 5, // 1 - 2 - 3 ...
 
 
                     }
