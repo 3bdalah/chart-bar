@@ -46,7 +46,7 @@
             "name": "ad7r el standup",
             "difficulty_points": 4,
             "category": "people",
-            "timestamps":"Sun Oct 03 2021 21:10:38 GMT+0200",
+            "timestamps":"Sun Nov 03 2021 21:10:38 GMT+0200",
             "month":"June",
             "subtasks": [
                 {
@@ -68,7 +68,7 @@
         {
             "id": 16,
             "name": "ad7r el standup",
-            "difficulty_points": 4,
+            "difficulty_points": 14,
             "category": "community",
             "timestamps":"Sun Oct 03 2021 21:10:38 GMT+0200",
             "month" : "May",
