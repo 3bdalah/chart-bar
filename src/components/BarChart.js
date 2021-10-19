@@ -5,26 +5,12 @@ import React, {
 import {
     Bar
 } from 'react-chartjs-2';
-import  axios  from 'axios';
+import axios from 'axios';
 
 import dataChart from '../Data.json';
 import randomColor from 'random-color';
 
 const BarChart = () => {
-    dataChart.goals.forEach(({created_at}) => {
-        // const date = new Date(2009, 10, 10);  // 2009-11-10
-        // console.log(month);
-        // console.log('Created At' , created_at);
-       
-    });
-
-    // month = monthTimestamps.getMonth(created_at);
-// console.log('month', monthTimestamps);
-
-
-
-
-
 
 
     // Created Random color ;
@@ -144,8 +130,8 @@ const BarChart = () => {
 
     });
     let maxPointPersent = (maxPoint % 5);
-    console.log('max point',maxPointPersent);
-    maxPoint += (5%maxPointPersent);
+    console.log('max point', maxPointPersent);
+    maxPoint += (5 % maxPointPersent);
     console.log(maxPoint);
     // console.log('fuckken max points', maxPoint);
     const pushNewLabel = () => {
@@ -162,23 +148,24 @@ const BarChart = () => {
     useEffect(() => {
 
         // let baseURL = "https://616c358e-9fbe-45aa-889e-0f4f053d7645.mock.pstmn.io/goals";
-
+        let baseURL = "https://wp.staging.robustastudio.com/3sixty/public/api/goals/";
         // let baseURL = "https://mockzz.herokuapp.com/goals"; 
-        let baseURL = "https://stoplight.io/mocks/3-sixty/3-sixty-app/23035474/goals";
+        // let baseURL = "https://wp.staging.robustastudio.com/3sixty/public/api/";
+        // let baseURL = "https://stoplight.io/mocks/3-sixty/3-sixty-app/api/goals";
 
-        const fetchData = async() => {
-               const data = await axios.get(baseURL);
-                // console.log('inside fetch',data);
-                // setGoals('spreed data',data.data);
+        const fetchData = async () => {
+            const dataGoals = await axios.get(baseURL);
+            // console.log('inside fetch',data);
+            // setGoals('spreed data',data.data);
 
-                // console.log('dataa' , data);
+            console.log('dataa', dataGoals.data);
         }
         fetchData();
         pushNewLabel();
         chart();
     }, []);
 
-     
+
     return (
 
         <>
@@ -233,7 +220,7 @@ const BarChart = () => {
         }
         />
 
-        </div> 
+        </div>  
         </>
     );
 };
